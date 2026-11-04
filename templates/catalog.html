@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% block content %}
+
+<section class="products-section">
+  <h1>КАТАЛОГ</h1>
+
+  <form method="GET" action="/catalog" class="search-form">
+    <input type="text" name="search" placeholder="Поиск одежды..." />
+    <button type="submit">Найти</button>
+  </form>
+
+  <div class="products">
+    {% for product in products %}
+    <div class="product-card">
+      {% if product.image %}
+      <img
+        src="{{ url_for('static', filename='uploads/' + product.image) }}"
+        alt="{{ product.name }}"
+      />
+      {% else %}
+      <img
+        src="https://placehold.co/400x500?text=Mens+Style"
+        alt="Фото товара"
+      />
+      {% endif %}
+
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.price }} сом</p>
+
+      <a href="{{ url_for('product', product_id=product.id) }}">Подробнее</a>
+    </div>
+    {% else %}
+    <p>Товаров пока нет.</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}

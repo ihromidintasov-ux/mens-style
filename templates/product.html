@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block content %}
+
+<section class="product-details">
+  <div class="product-image">
+    {% if product.image %}
+    <img
+      src="{{ url_for('static', filename='uploads/' + product.image) }}"
+      alt="{{ product.name }}"
+    />
+    {% else %}
+    <img src="https://placehold.co/500x600?text=Mens+Style" alt="Фото товара" />
+    {% endif %}
+  </div>
+
+  <div class="product-info">
+    <p class="small-title">MEN'S STYLE COLLECTION</p>
+
+    <h1>{{ product.name }}</h1>
+
+    <h2>{{ product.price }} сом</h2>
+
+    <p>{{ product.description }}</p>
+
+    <p>Категория: {{ product.category }}</p>
+    <p>Размер: {{ product.size or "Уточняется" }}</p>
+
+    {% if current_user.is_authenticated %}
+    <form
+      method="POST"
+      action="{{ url_for('add_to_cart', product_id=product.id) }}"
+    >
+      <button type="submit" class="main-button">ДОБАВИТЬ В КОРЗИНУ</button>
+    </form>
+    {% else %}
+    <a href="{{ url_for('login') }}" class="main-button">ВОЙТИ ДЛЯ ПОКУПКИ</a>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block content %}
+
+<section class="auth-container">
+  <h1>ВХОД В АККАУНТ</h1>
+  <p>Рады видеть тебя в MEN'S STYLE!</p>
+
+  <form method="POST">
+    <input type="email" name="email" placeholder="Твой email" required />
+    <input type="password" name="password" placeholder="Пароль" required />
+    <button type="submit" class="main-button">ВОЙТИ</button>
+  </form>
+
+  <p>Нет аккаунта? <a href="/register">Зарегистрироваться</a></p>
+</section>
+
+{% endblock %}

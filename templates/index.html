@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block content %}
+
+<section class="hero">
+  <div>
+    <p class="small-title">NEW COLLECTION 2026</p>
+    <h1>СТИЛЬ НАЧИНАЕТСЯ<br />С ТЕБЯ</h1>
+    <p>Открой коллекцию современной мужской одежды.</p>
+    <a href="/catalog" class="main-button">СМОТРЕТЬ КАТАЛОГ</a>
+  </div>
+</section>
+
+<section class="products-section">
+  <h2>НАШИ ТОВАРЫ</h2>
+
+  <div class="products">
+    {% for product in products %}
+    <div class="product-card">
+      {% if product.image %}
+      <img
+        src="{{ url_for('static', filename='uploads/' + product.image) }}"
+        alt="{{ product.name }}"
+      />
+      {% else %}
+      <img
+        src="https://placehold.co/400x500?text=Mens+Style"
+        alt="Фото товара"
+      />
+      {% endif %}
+
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.price }} сом</p>
+
+      <a href="{{ url_for('product', product_id=product.id) }}"> Подробнее </a>
+    </div>
+    {% else %}
+    <p>Пока товаров нет.</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}

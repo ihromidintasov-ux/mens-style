@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block content %}
+
+<section class="auth-container">
+  <h1>СОЗДАТЬ АККАУНТ</h1>
+  <p>Присоединяйся к MEN'S STYLE!</p>
+
+  <form method="POST">
+    <input type="text" name="username" placeholder="Твоё имя" required />
+    <input type="email" name="email" placeholder="Твой email" required />
+    <input
+      type="password"
+      name="password"
+      placeholder="Пароль (минимум 8 символов)"
+      minlength="8"
+      required
+    />
+    <button type="submit" class="main-button">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+  </form>
+
+  <p>Уже есть аккаунт? <a href="/login">Войти</a></p>
+</section>
+
+{% endblock %}
